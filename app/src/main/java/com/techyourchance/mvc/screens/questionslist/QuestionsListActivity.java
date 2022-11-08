@@ -32,10 +32,7 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsList
         super.onCreate(savedInstanceState);
 
         mViewMvc = new QuestionsListViewMvcImpl(LayoutInflater.from(this), null);
-
-
-
-        mViewMvc.registerListener(this);
+        mViewMvc.registerLister(this);
 
         mStackoverflowApi = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -76,7 +73,7 @@ public class QuestionsListActivity extends BaseActivity implements QuestionsList
         for (QuestionSchema questionSchema : questionSchemas) {
             questions.add(new Question(questionSchema.getId(), questionSchema.getTitle()));
         }
-mViewMvc.bindQuestions(questions);
+        mViewMvc.bindQuestions(questions);
     }
 
     private void networkCallFailed() {

@@ -1,5 +1,6 @@
 package com.techyourchance.mvc.screens.questionslist;
 
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,14 @@ import java.util.List;
 public class QuestionsListItemViewMvcImpl implements QuestionsListItemViewMvc {
 
     private final View mRootView;
-    private final List<Listener> mListeners = new ArrayList<>(1);
+    private final TextView mTxtTitle;
 
+    private final List<Listener> mListeners = new ArrayList<>(1);
     private Question mQuestion;
 
-    private TextView mTxtView;
-
-    public QuestionsListItemViewMvcImpl(LayoutInflater inflater, ViewGroup parent) {
+    public QuestionsListItemViewMvcImpl(LayoutInflater inflater, @Nullable ViewGroup parent) {
         mRootView = inflater.inflate(R.layout.layout_question_list_item, parent, false);
-        mTxtView = findViewById(R.id.txt_title);
-
-
+        mTxtTitle = findViewById(R.id.txt_title);
         getRootView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +55,6 @@ public class QuestionsListItemViewMvcImpl implements QuestionsListItemViewMvc {
     @Override
     public void bindQuestion(Question question) {
         mQuestion = question;
-        mTxtView.setText(question.getTitle());
+        mTxtTitle.setText(question.getTitle());
     }
 }
